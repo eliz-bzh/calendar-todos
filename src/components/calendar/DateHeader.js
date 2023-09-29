@@ -5,9 +5,9 @@ const DateHeader = ({ date, previousMonth, nextMonth }) =>{
 
     return(
         <div className='header'>
-            <button onClick={()=>previousMonth()}>-</button>
+            <button className='btn btn-outline-secondary' onClick={()=>previousMonth()}><i class="bi bi-arrow-left"/></button>
             <span className='month-name'>{months[date.getMonth()]}, {date.getFullYear()}</span>
-            <button onClick={()=>nextMonth()}>+</button>
+            <button className='btn btn-outline-secondary' onClick={()=>nextMonth()}><i class="bi bi-arrow-right"/></button>
         </div>
     )
 }
