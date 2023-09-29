@@ -39,7 +39,7 @@ const Calendar = () => {
 
 
     return(
-        <div className="calendar first-column">
+        <div className="calendar">
             <DateHeader date={currentDate} previousMonth={previousMonth} nextMonth={nextMonth} />
             <DateTHead/>
             <DateTBody previousDays={previousMonthDays} currentDays={currentMonthDays} nextDays={nextMonthDays} />

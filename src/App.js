@@ -1,12 +1,9 @@
 import './App.css';
-import { Calendar, Drawer } from './components';
+import { Calendar } from './components';
 
 function App() {
   return (
-    <div>
-      <Calendar/>
-      <Drawer/>
-    </div>
+    <Calendar/>
   );
 }
 

@@ -2,44 +2,6 @@
   text-align: center;
 }
 
-html, body {
-  height: 100%;
-  margin: 0 auto;
-}
-
-body {
-  display: flex;
-  overflow: hidden !important;
-  font-family: sans-serif;
-  font-weight: 100;
-  --grey-100: #e4e9f0;
-  --grey-200: #cfd7e3;
-  --grey-300: #034ba3;
-  --text: #000;
-  --grid-gap: 1px;
-  --day-label-size: 20px;
-}
-
-.first-column {
-  flex: 1 1 0px;
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-}
-
-
-.rightColumn {
-  box-sizing: border-box;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: width 180ms ease;
-  width: calc(100% - 50px);
-  max-width: 360px;
-  border-left: solid 1px var(--grey-200);
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;

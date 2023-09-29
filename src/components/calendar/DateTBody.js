@@ -8,7 +8,7 @@ const DateTBody = ({ previousDays, currentDays, nextDays }) => {
                 <li key={index} className='calendar-day previous-month-day'>{el+1}</li>
             )}
             {currentDays.map((el, index)=>
-                <li key={index} className='calendar-day' data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">{el+1}</li>
+                <li key={index} className='calendar-day'>{el+1}</li>
             )}
             {nextDays.map((el, index)=>
                 <li key={index} className='calendar-day next-month-day'>{el+1}</li>
