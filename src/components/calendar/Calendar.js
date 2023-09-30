@@ -37,7 +37,8 @@ const Calendar = ({ click }) => {
         setNextMonthDays(next);
     }, [currentDate])
 
-    const clickInCalendar = (clickedDay) => {
+    const clickInCalendar = (e, clickedDay) => {
+        console.log(e)
         click(new Date(currentDate.getFullYear(), currentDate.getMonth(), clickedDay));
     }
 
@@ -46,7 +47,7 @@ const Calendar = ({ click }) => {
         <div className="calendar">
             <DateHeader date={currentDate} previousMonth={previousMonth} nextMonth={nextMonth} />
             <DateTHead/>
-            <DateTBody previousDays={previousMonthDays} currentDays={currentMonthDays} nextDays={nextMonthDays} handleClick={clickInCalendar} />
+            <DateTBody previousDays={previousMonthDays} currentDays={currentMonthDays} nextDays={nextMonthDays} handleClick={clickInCalendar} currentDate={currentDate} />
         </div>
     )
 }

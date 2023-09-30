@@ -5,6 +5,24 @@
     margin: 20px 50px;
 }
 
+.calendar-day span:hover {
+    cursor: pointer;
+    background-color: #f1f3f4;
+}
+
+.calendar-day span{
+    margin: 3px 3px 0 0;
+    height: 32px;
+    width: 32px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.current-date span {
+    color: #fff;
+    background-color: #0d6efd!important;
+}
+
 ol, li {
     padding: 0;
     margin: 0;
