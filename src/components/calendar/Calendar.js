@@ -3,7 +3,7 @@ import { DateHeader, DateTBody, DateTHead } from "..";
 
 import './calendar.css';
 
-const Calendar = () => {
+const Calendar = ({ click }) => {
 
     const [currentDate, setCurrentDate] = useState(new Date());
     const [previousMonthDays, setPreviousMonthDays] = useState([]);
@@ -37,12 +37,16 @@ const Calendar = () => {
         setNextMonthDays(next);
     }, [currentDate])
 
+    const clickInCalendar = (clickedDay) => {
+        click(new Date(currentDate.getFullYear(), currentDate.getMonth(), clickedDay));
+    }
+
 
     return(
         <div className="calendar">
             <DateHeader date={currentDate} previousMonth={previousMonth} nextMonth={nextMonth} />
             <DateTHead/>
-            <DateTBody previousDays={previousMonthDays} currentDays={currentMonthDays} nextDays={nextMonthDays} />
+            <DateTBody previousDays={previousMonthDays} currentDays={currentMonthDays} nextDays={nextMonthDays} handleClick={clickInCalendar} />
         </div>
     )
 }
