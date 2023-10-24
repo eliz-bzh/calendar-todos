@@ -6,3 +6,6 @@ export const FETCH_DRIVER = "FETCH_DRIVER";
 export const FETCH_USER = "FETCH_USER";
 
 export const SET_LOADER = "SET_LOADER";
+
+export const DELETE_TODO = "DELETE_TODO";
+export const ADD_TODO = "ADD_TODO";
