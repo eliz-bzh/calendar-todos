@@ -1,4 +1,5 @@
 import React from "react";
+import Todos from "./todo/app";
 
 const Drawer = ({ dateTodos }) => {
 
@@ -9,7 +10,7 @@ const Drawer = ({ dateTodos }) => {
                     <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div className="offcanvas-body">
-                    {dateTodos.toLocaleString('en-GB', {dateStyle:'medium'})}
+                    <Todos dateTodos={dateTodos.toLocaleString('en-GB', {dateStyle:'medium'})}/>
                 </div>
             </div>
         </div>
