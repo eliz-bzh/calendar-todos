@@ -10,11 +10,11 @@ const Calendar = ({ click }) => {
     const [currentMonthDays, setCurrentMonthDays] = useState([]);
     const [nextMonthDays, setNextMonthDays] = useState([]);
 
-    const previousMonth = (e) => {
+    const previousMonth = () => {
         setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)));
     }
     
-    const nextMonth = (e) => {
+    const nextMonth = () => {
         setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
     }
 
@@ -37,11 +37,9 @@ const Calendar = ({ click }) => {
         setNextMonthDays(next);
     }, [currentDate])
 
-    const clickInCalendar = (e, clickedDay) => {
-        console.log(e)
+    const clickInCalendar = (clickedDay) => {
         click(new Date(currentDate.getFullYear(), currentDate.getMonth(), clickedDay));
     }
-
 
     return(
         <div className="calendar">
