@@ -6,18 +6,27 @@ export const setLoad = loader => ({
     payload: loader
 });
 
-export const fetchTodos = (currentDate) => (dispatch) => {
+export const fetchTodos = (date) => (dispatch) => {
     axios.get(`http://localhost:3001/api/todos`)
         .then(({ data }) => {
-            const filtered = data.filter(el=>new Date(el.dateStart).toLocaleString('en-GB', {dateStyle:'medium'}) === currentDate)
-            dispatch(setTodos(filtered));
+            dispatch(setTodos(data));
             dispatch(setLoad(false));
+            dispatch(fetchTodosByDate(date));
         })
 }
 
 export const setTodos = todos => ({
     type: CONSTANTS.FETCH_TODOS,
     payload: todos
+});
+
+export const fetchTodosByDate = (currentDate) => (dispatch) => {
+    dispatch(setTodosByDate(currentDate));
+}
+
+export const setTodosByDate = currentDate => ({
+    type: CONSTANTS.FETCH_TODOS_BY_DATE,
+    payload: currentDate
 });
 
 export const fetchDrivers = () => (dispatch) => {
