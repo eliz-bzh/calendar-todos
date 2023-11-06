@@ -2,6 +2,6 @@
     max-width: 425px;
 }
 
-.top-panel {
+.top-panel, .add-item-button {
     margin: 1rem 0;
 }
