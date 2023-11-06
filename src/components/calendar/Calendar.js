@@ -38,7 +38,7 @@ const Calendar = ({ click }) => {
     }, [currentDate])
 
     const clickInCalendar = (clickedDay) => {
-        click(new Date(currentDate.getFullYear(), currentDate.getMonth(), clickedDay));
+        click(new Date(currentDate.getFullYear(), currentDate.getMonth(), clickedDay, 23,0,0));
     }
 
     return(
