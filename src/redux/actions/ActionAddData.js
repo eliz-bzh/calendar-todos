@@ -1,6 +1,6 @@
 import * as CONSTANTS from './ActionTypes';
 import axios from 'axios';
-import { setLoad } from './ActionFetchData';
+import { fetchTodos } from './ActionFetchData';
 
 export const createTodo = (todo) => (dispatch) => {
     axios.post(`http://localhost:3001/api/todos/create`, {
@@ -15,7 +15,7 @@ export const createTodo = (todo) => (dispatch) => {
     })
     .then(({ data }) => {
         dispatch(setMessage(data));
-        dispatch(setLoad(false));
+        dispatch(fetchTodos(todo.dateStart));
     })
 }
 
