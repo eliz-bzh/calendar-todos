@@ -1,3 +1,7 @@
+![Снимок](https://github.com/eliz-bzh/calendar-todos/assets/43619988/5b5955bf-0f3c-4c3c-b740-ccb5548697ea)
+![photo_4_2023-11-06_14-09-12](https://github.com/eliz-bzh/calendar-todos/assets/43619988/be114a76-1217-4c70-a80c-c56740b25d91)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
