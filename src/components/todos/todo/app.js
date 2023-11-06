@@ -4,7 +4,7 @@ import TodoList from "../todo-list/todo-list";
 import './app.css';
 import AppHeader from '../app-header/app-header';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTodos, setLoad } from '../../../redux/actions/ActionFetchData';
+import { fetchTodos, fetchTodosByDate, setLoad } from '../../../redux/actions/ActionFetchData';
 import { createSelector } from '@reduxjs/toolkit';
 import { deleteTodo } from '../../../redux/actions/ActionDeleteData';
 import { createTodo } from '../../../redux/actions/ActionAddData';
@@ -12,7 +12,7 @@ import { createTodo } from '../../../redux/actions/ActionAddData';
 const Todos = ({ dateTodos }) => {
     let maxId = 100;
     const dispatch = useDispatch();
-    const { todos } = useSelector(({ fetchDataReducer })=> fetchDataReducer);
+    const { todos, todosDay } = useSelector(({ fetchDataReducer })=> fetchDataReducer);
     const [ todoData,  setTodoData ] = useState([]);
     const [ search, setSearch ] = useState('');
     const [ label, setLabel ] = useState('');
@@ -29,19 +29,20 @@ const Todos = ({ dateTodos }) => {
 
     useEffect(()=>{
         dispatch(setLoad(true));
-        dispatch(fetchTodos(dateTodos));
-    }, [, dateTodos])
+        dispatch(fetchTodos(dateTodos)); 
+    }, [])
+
+    useEffect(()=>{
+        dispatch(fetchTodosByDate(dateTodos));
+    }, [dateTodos])
 
     useEffect(()=>{
         setTodoData([])
-        todos.map(el=>addItem(el))
-    }, [todos])
+        todosDay.map(el=>addItem(el))
+    }, [todos, todosDay])
     
     const deleteItem=(index)=>{
-        const idx = todoData.findIndex((el)=> el.index === index);
-        const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
-        setTodoData(newArray);
-        dispatch(deleteTodo(index));
+        dispatch(deleteTodo(index, dateTodos));
     };
 
     const addItem=(el)=>{
@@ -102,8 +103,8 @@ const Todos = ({ dateTodos }) => {
         dispatch(createTodo({
             label: label,
             adress: 'Minsk',
-            dateStart: new Date('October 25, 2023 15:15:30 UTC').toJSON(),
-            dateEnd: new Date('October 25, 2023 15:15:30 UTC').toJSON(),
+            dateStart: new Date(dateTodos).toJSON(),
+            dateEnd: new Date(dateTodos).toJSON(),
             description: "Connect server by node.js",
             allDay: false,
             driver_id: 1,
@@ -122,15 +123,39 @@ const Todos = ({ dateTodos }) => {
     const visibleItems = filtered(searchs(todoData, search), filter);
     return(
         <div className="todo-app">
-            <AppHeader dateTodos={dateTodos}/>
+            <AppHeader dateTodos={dateTodos.toLocaleString('en-GB', {dateStyle:'medium'})}/>
             <div className='top-panel d-flex'>
                 <SearchPanel onLabelSearch={onLabelSearch}/>
             </div>
             <TodoList todos={visibleItems} onDeleted={deleteItem} onToggleImportant={onToggleImportant} onToggleDone={onToggleDone}/>
-            <form className="item-add-form d-flex" onSubmit={(e)=>onSubmit(e)}>
-                <input type="text" className="form-control" onChange={(e)=>onLabelChange(e)} placeholder="What needs to be done" value={label}/>
-                <button className="btn btn-outline-secondary">Add Item</button>
-            </form>
+            
+            {/* Modal add */}
+            <div>
+                <div className='add-item-button d-grid'>
+                    <button className="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item</button>
+                </div>
+
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Add Todos</h5>
+                        <button className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                        <form id='add-item-form' className="item-add-form" onSubmit={(e)=>onSubmit(e)}>
+                            <input type="text" className="form-control" onChange={(e)=>onLabelChange(e)} placeholder="What needs to be done" value={label}/>
+                        </form>
+                    </div>
+                    <div className="modal-footer">
+                        <button className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" form="add-item-form" className="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         </div>
     );
 }
