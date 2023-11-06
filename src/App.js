@@ -4,7 +4,7 @@ import { Calendar, Drawer } from './components';
 
 function App() {
 
-  const [clickedDate, setClickedDate] = useState(new Date());
+  const [clickedDate, setClickedDate] = useState(new Date(new Date().getTime() + 10800000));
 
   const click = (date)=> {
     setClickedDate(date);
